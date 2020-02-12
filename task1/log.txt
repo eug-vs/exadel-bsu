@@ -1,0 +1,14 @@
+commit 5d7777cb38a0fd16367e4a23c4cefe5f45b4c892
+Author: Eug-VS <eug-vs@keemail.me>
+Date:   Wed Feb 12 15:33:16 2020 +0300
+
+    feat: configure initial .gitignore :see_no_evil:
+
+    This will be updated as needed, since I don't know project
+    structure well enough yet.
+
+commit 6db984ad9eeef315785d45455cb437d903cbd63f
+Author: Eug-VS <eug-vs@keemail.me>
+Date:   Wed Feb 12 15:26:46 2020 +0300
+
+    docs: create initial README.md
