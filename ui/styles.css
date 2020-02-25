@@ -19,23 +19,26 @@ html, body {
 }
 
 #header {
-  border-bottom: 1px solid grey;
   top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #footer {
-  border-top: 1px solid grey;
   bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.outlined {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
 }
 
 #content {
-  border: 1px solid grey;
   margin: 100px 40px;
   padding: 20px;
 }
 
 .post {
-  border: 1px solid grey;
   padding: 20px;
   margin-bottom: 35px;
 }
