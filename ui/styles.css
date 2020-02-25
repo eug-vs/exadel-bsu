@@ -49,8 +49,13 @@ a {
 }
 
 #content {
-  margin: 100px 40px;
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 5%;
+  right: 5%;
   padding: 20px;
+  overflow: auto;
 }
 
 .post {
