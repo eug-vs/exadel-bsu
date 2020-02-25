@@ -6,6 +6,11 @@ html, body {
   font-family: 'Roboto';
 }
 
+a {
+  text-decoration: none;
+  color: #f4f4f4;
+}
+
 .sticky {
   position: fixed;
 }
@@ -15,24 +20,32 @@ html, body {
   width : 100%;
 }
 
+.bar > a {
+  padding: 20px;
+}
+
+.bar > a:hover {
+  background: rgba(255, 255, 255, .05);
+}
+
 .bar > span {
   padding: 20px;
 }
 
 #header {
   top: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
 }
 
 #footer {
   bottom: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, .2);
 }
 
 .paper {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
 }
 
 #content {
