@@ -52,14 +52,17 @@ a {
   border: 1px solid rgba(255, 255, 255, .15);
 }
 
+.outlined:hover {
+  border: 1px solid rgba(255, 255, 255, .25);
+}
+
+#page {
+  margin: 100px 20%;
+  display: flex;
+}
+
 #content {
-  position: absolute;
-  top: 10%;
-  bottom: 10%;
-  left: 5%;
-  right: 5%;
-  padding: 20px;
-  overflow: auto;
+  width: 60%;
 }
 
 .icon {
