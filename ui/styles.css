@@ -117,3 +117,10 @@ footer a {
   user-select: none;
 }
 
+.post img {
+  max-width: 100%;
+}
+
+.post .hashtags {
+  margin-top: 10px;
+}
