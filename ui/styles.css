@@ -1,3 +1,5 @@
+/* COMMON */
+
 html, body {
   background: #121212;
   color: #f4f4f4;
@@ -11,6 +13,26 @@ a {
   color: #f4f4f4;
   outline: none;
 }
+
+
+/* BASIC ELEMENTS */
+
+.paper {
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+  border-radius: 5px;
+  padding: 4px;
+}
+
+.outlined {
+  border: 1px solid rgba(255, 255, 255, .15);
+}
+
+.outlined:hover {
+  border: 1px solid rgba(255, 255, 255, .25);
+}
+
+
+/* MAIN CONTAINERS */
 
 .sticky {
   position: fixed;
@@ -42,20 +64,6 @@ a {
   align-items: center;
 }
 
-.paper {
-  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
-  border-radius: 5px;
-  padding: 4px;
-}
-
-.outlined {
-  border: 1px solid rgba(255, 255, 255, .15);
-}
-
-.outlined:hover {
-  border: 1px solid rgba(255, 255, 255, .25);
-}
-
 #page {
   margin: 100px 20%;
   display: flex;
@@ -64,6 +72,9 @@ a {
 #content {
   width: 60%;
 }
+
+
+/* CONTENT */
 
 .icon {
   width: 24px;
