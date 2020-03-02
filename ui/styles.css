@@ -16,8 +16,19 @@ a {
 
 input {
   border: none;
-  color: #f4f4f4;
+  color: rgba(255, 255, 255, 0.75);
   padding: 12px !important;
+}
+
+
+/* COLORS */
+
+.elevation {
+  background: rgba(255, 255, 255, .05);
+}
+
+.secondary {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 
@@ -40,10 +51,11 @@ input {
 
 /* MAIN CONTAINERS */
 
-.sticky {
+header, footer {
   position: fixed;
   display: flex;
   width : 100%;
+  background: #252525;
 }
 
 header {
