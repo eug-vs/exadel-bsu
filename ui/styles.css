@@ -141,14 +141,14 @@ footer a {
   margin-top: 10px;
 }
 
-.post span {
-  font-weight: bold;
-}
-
 .post form {
   display: flex;
   flex-direction: column;
-  margin-top: 12px;
+}
+
+.post form span {
+  font-weight: bold;
+  margin-bottom: 12px;
 }
 
 .post form button {
