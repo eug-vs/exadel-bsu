@@ -85,12 +85,8 @@ footer a {
 }
 
 #page {
-  margin: 100px 20%;
+  margin: 100px 30%;
   display: flex;
-}
-
-main {
-  width: 60%;
 }
 
 
