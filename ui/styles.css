@@ -14,6 +14,12 @@ a {
   outline: none;
 }
 
+input {
+  border: none;
+  color: #f4f4f4;
+  padding: 12px !important;
+}
+
 
 /* BASIC ELEMENTS */
 
@@ -124,3 +130,9 @@ main {
 .post .hashtags {
   margin-top: 10px;
 }
+
+.post form {
+  display: flex;
+  flex-direction: column;
+}
+
