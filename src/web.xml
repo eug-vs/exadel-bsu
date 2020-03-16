@@ -9,6 +9,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>status</servlet-name>
-    <url-pattern>status/</url-pattern>
+    <url-pattern>/status</url-pattern>
   </servlet-mapping>
 </web-app>
