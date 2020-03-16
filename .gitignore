@@ -3,3 +3,6 @@
 
 # VIM swap files
 **/*.swp
+
+# Build folder for compiled Java classes
+build
