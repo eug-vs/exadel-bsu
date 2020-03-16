@@ -10,7 +10,7 @@ Project guided by Exadel team - a simple twitter-like **SPA**.
 ## Environmental variables
  - `JAVA_HOME` - has to point at your **JDK** installation
  - `CATALINA_HOME` - has to point at **Apache Tomcat** root directory
- - `CLASSPATH` - has to contain `$CATALINE_HOME/lib/servlet-api.jar`
+ - `CLASSPATH` - has to contain `$(CATALINA_HOME)/lib/servlet-api.jar`
  - `PROJECT_NAME` - *optional*, defaults to `bsu`
 
 ## Building and running
