@@ -4,9 +4,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Status extends HttpServlet {
+public class NameServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.getOutputStream().println("Application is running!");
+    String name = request.getParameter("name");
+    response.getOutputStream().println("<h1> Name is " + name + "! </h1>");
   }
 }
