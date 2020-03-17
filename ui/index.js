@@ -18,8 +18,8 @@
     if (hashTag) results = results.filter(post => post.hashTags.find(tag => tag === hashTag));
     if (date) {
       if (date.before || date.after) {
-        if (date.before) results = results.filter(post => post.createdAt >= date.before);
-        if (date.after) results = results.filter(post => post.createdAt <= date.after);
+        if (date.before) results = results.filter(post => post.createdAt <= date.before);
+        if (date.after) results = results.filter(post => post.createdAt >= date.after);
       } else results = results.filter(post.createdAt === date);
     }
     return results;
