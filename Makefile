@@ -27,7 +27,8 @@ run: deploy
 	@echo "Server is running at http://localhost:8080/$(PROJECT_NAME)"
 
 deploy: assemble | $(DEPLOY_DIR) $(BUILD_DIR)
-	@cd $(BUILD_DIR) && jar -cvf $(DEPLOY_DIR)/$(PROJECT_NAME).war .
+	@cd $(BUILD_DIR) && jar -cf $(DEPLOY_DIR)/$(PROJECT_NAME).war .
+	@echo Project deployed to Tomcat: $(DEPLOY_DIR)/$(PROJECT_NAME).war
 
 assemble: $(ALL_STATIC) $(BUILD_DIR)/WEB-INF/web.xml $(ALL_TARGETS)
 
