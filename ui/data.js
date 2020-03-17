@@ -8,7 +8,12 @@ let posts = [
       name: "Eugene",
       surname: "Sokolov"
     },
-    createdAt: new Date("2020-03-17T23:00:00")
+    createdAt: new Date("2020-03-17T23:00:00"),
+    likes: [],
+    hashTags: [
+      "doggo",
+      "cool"
+    ],
   },
   {
     id: 2,
@@ -18,7 +23,15 @@ let posts = [
       name: "John",
       surname: "Doe"
     },
-    createdAt: new Date("2020-03-17T23:00:00")
+    createdAt: new Date("2020-03-17T23:00:00"),
+    likes: [
+      {
+        id: 1,
+        name: "Eugene",
+        surname: "Sokolov"
+      }
+    ],
+    hashTags: []
   },
   {
     id: 3,
@@ -28,7 +41,9 @@ let posts = [
       name: "Eugene",
       surname: "Sokolov"
     },
-    createdAt: new Date("2020-02-17T23:00:00")
+    createdAt: new Date("2020-02-17T23:00:00"),
+    likes: [],
+    hashTags: []
   },
   {
     id: 4,
@@ -38,7 +53,9 @@ let posts = [
       name: "Eugene",
       surname: "Sokolov"
     },
-    createdAt: new Date("2020-03-12T23:00:00")
+    createdAt: new Date("2020-03-12T23:00:00"),
+    likes: [],
+    hashTags: []
   },
   {
     id: 5,
@@ -48,7 +65,9 @@ let posts = [
       name: "Eugene",
       surname: "Sokolov"
     },
-    createdAt: new Date("2020-01-20T23:00:00")
+    createdAt: new Date("2020-01-20T23:00:00"),
+    likes: [],
+    hashTags: []
   },
   {
     id: 6,
@@ -58,7 +77,9 @@ let posts = [
       name: "John",
       surname: "Doe"
     },
-    createdAt: new Date("2020-03-17T23:00:00")
+    createdAt: new Date("2020-03-17T23:00:00"),
+    likes: [],
+    hashTags: []
   },
   {
     id: 7,
@@ -68,7 +89,9 @@ let posts = [
       name: "John",
       surname: "Doe"
     },
-    createdAt: new Date("2020-03-17T23:00:00")
+    createdAt: new Date("2020-03-17T23:00:00"),
+    likes: [],
+    hashTags: []
   },
   {
     id: 8,
@@ -78,7 +101,9 @@ let posts = [
       name: "Eugene",
       surname: "Sokolov"
     },
-    createdAt: new Date("2020-03-17T23:00:00")
+    createdAt: new Date("2020-03-17T23:00:00"),
+    likes: [],
+    hashTags: []
   },
   {
     id: 9,
@@ -88,7 +113,9 @@ let posts = [
       name: "Eugene",
       surname: "Sokolov"
     },
-    createdAt: new Date("2020-03-17T23:00:00")
+    createdAt: new Date("2020-03-17T23:00:00"),
+    likes: [],
+    hashTags: []
   },
   {
     id: 10,
@@ -98,7 +125,9 @@ let posts = [
       name: "Eugene",
       surname: "Sokolov"
     },
-    createdAt: new Date("2020-03-17T23:00:00")
+    createdAt: new Date("2020-03-17T23:00:00"),
+    likes: [],
+    hashTags: []
   },
 ];
 

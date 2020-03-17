@@ -33,20 +33,44 @@
 
   logic.getPost = id => {
     if(!postsLoaded()) return [];
-    return posts.filter(post => post.id == id);
+    return posts.find(post => post.id == id);
+  }
+
+  const validateUser = user => {
+    if (!user) return false;
+    if (!user.id || typeof user.id !== 'number') return false;
+    if (!user.name || typeof user.name !== 'string') return false;
+    if (!user.surname || typeof user.surname !== 'string') return false;
+
+    return true;
   }
 
   logic.validatePost = post => {
+    // Required
     if (!post) return false;
     if (!post.id || typeof post.id !== 'number') return false;
     if (!post.content || typeof post.content !== 'string') return false;
     if (!post.createdAt || typeof post.createdAt !== 'object') return false;
+    if (!validateUser(post.author)) return false;
+
+    // Optional
     if (post.imageUrl && typeof post.imageUrl !== 'string') return false;
 
-    if (!post.author) return false;
-    if (!post.author.id || typeof post.author.id !== 'number') return false;
-    if (!post.author.name || typeof post.author.name !== 'string') return false;
-    if (!post.author.surname || typeof post.author.surname !== 'string') return false;
+    if (
+      post.hashTags &&
+      !post.hashTags.reduce(
+        (isValid, current) => isValid? typeof current == 'string' : false,
+        true
+      )
+    ) return false;
+
+    if (
+      post.likes &&
+      !post.likes.reduce(
+        (isValid, current) => isValid? validateUser(current) : false,
+        true
+      )
+    ) return false;
 
     return true;
   }
