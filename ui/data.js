@@ -1,4 +1,4 @@
-const posts = [
+let posts = [
   {
     id: 1,
     content: "In id erat non orci commodo lobortis.",
