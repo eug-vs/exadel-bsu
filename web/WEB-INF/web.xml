@@ -23,6 +23,14 @@
     <servlet-name>page</servlet-name>
     <jsp-file>/page.html</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>forward</servlet-name>
+    <servlet-class>ForwardServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>redirect</servlet-name>
+    <servlet-class>RedirectServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>index</servlet-name>
@@ -43,5 +51,13 @@
   <servlet-mapping>
     <servlet-name>page</servlet-name>
     <url-pattern>/page</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>forward</servlet-name>
+    <url-pattern>/test1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>redirect</servlet-name>
+    <url-pattern>/test2</url-pattern>
   </servlet-mapping>
 </web-app>
