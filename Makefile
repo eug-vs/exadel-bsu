@@ -23,8 +23,10 @@ run: deploy
 	@$(CATALINA_HOME)/bin/startup.sh
 	@echo "Server is running at http://localhost:8080/$(PROJECT_NAME)"
 
-deploy: $(ALL_STATIC) $(BUILD_DIR)/WEB-INF/web.xml $(ALL_TARGETS) | $(DEPLOY_DIR) $(BUILD_DIR)
+deploy: assemble | $(DEPLOY_DIR) $(BUILD_DIR)
 	cp $(BUILD_DIR)/. $(DEPLOY_DIR) -r
+
+assemble: $(ALL_STATIC) $(BUILD_DIR)/WEB-INF/web.xml $(ALL_TARGETS)
 
 $(BUILD_DIR)/%.html: $(WEB_DIR)/%.html | $(BUILD_DIR)
 	cp $< $(BUILD_DIR)
