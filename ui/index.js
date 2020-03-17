@@ -13,8 +13,9 @@
   const filterPosts = (posts, filterConfig) => {
     if (!filterConfig) return posts;
     let results = posts;
-    const { date, authorId } = filterConfig;
+    const { date, authorId, hashTag } = filterConfig;
     if (authorId) results = results.filter(post => post.author.id === authorId);
+    if (hashTag) results = results.filter(post => post.hashTags.find(tag => tag === hashTag));
     if (date) {
       if (date.before || date.after) {
         if (date.before) results = results.filter(post => post.createdAt >= date.before);
