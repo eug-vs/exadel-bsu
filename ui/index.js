@@ -52,11 +52,12 @@
   }
 
   logic.addPost = post => {
-    if (!validatePost(post)) return false;
+    if (!validatePost(post) || !postsLoaded()) return false;
     return posts.push(post);
   }
 
   logic.removePost = id => {
+    if(!postsLoaded()) return false;
     return posts = posts.filter(post => post.id !== id);
   }
 
