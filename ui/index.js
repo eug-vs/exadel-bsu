@@ -77,8 +77,16 @@
   }
 
   logic.addPost = post => {
-    if (!validatePost(post) || !postsLoaded()) return false;
+    if (!logic.validatePost(post) || !postsLoaded()) return false;
     return posts.push(post);
+  }
+
+  logic.editPost = (id, data) => {
+    const post = logic.getPost(id);
+    const index = posts.findIndex(post => post.id === id);
+    const editedPost = { ...post, ...data };
+    if (!logic.validatePost(editedPost)) return false;
+    return posts[index] = editedPost;
   }
 
   logic.removePost = id => {
