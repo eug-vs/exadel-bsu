@@ -6,7 +6,7 @@ SOURCE_DIR=src
 WEB_DIR=web
 BUILD_DIR=build
 CLASSES_DIR=$(BUILD_DIR)/WEB-INF/classes
-DEPLOY_DIR=$(CATALINA_HOME)/webapps/$(PROJECT_NAME)
+DEPLOY_DIR=$(CATALINA_HOME)/webapps
 
 # Targets
 ALL_SOURCES=$(notdir $(basename $(wildcard $(SOURCE_DIR)/*.java)))
@@ -24,7 +24,7 @@ run: deploy
 	@echo "Server is running at http://localhost:8080/$(PROJECT_NAME)"
 
 deploy: assemble | $(DEPLOY_DIR) $(BUILD_DIR)
-	cp $(BUILD_DIR)/. $(DEPLOY_DIR) -r
+	@cd $(BUILD_DIR) && jar -cvf $(DEPLOY_DIR)/$(PROJECT_NAME).war .
 
 assemble: $(ALL_STATIC) $(BUILD_DIR)/WEB-INF/web.xml $(ALL_TARGETS)
 
@@ -51,7 +51,8 @@ clean:
 	rm -rf $(BUILD_DIR)
 
 clean_deploy: stop
-	rm -rf $(DEPLOY_DIR)
+	rm -rf $(DEPLOY_DIR)/$(PROJECT_NAME)
+	rm -f $(DEPLOY_DIR)/$(PROJECT_NAME).war
 
-reset: clean stop clean_deploy
+reset: clean clean_deploy
 
