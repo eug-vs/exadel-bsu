@@ -14,7 +14,7 @@ Project guided by Exadel team - a simple twitter-like **SPA**.
  - `PROJECT_NAME` - *optional*, defaults to `bsu`
 
 ## Building and running
-The running process is pretty simple due to [Makefile](./Makefile), simply execute:
+The running process is pretty simple due to [Makefile](./Makefile), just execute:
 ```bash
 $ make run
 ```
@@ -24,14 +24,23 @@ Here is the example output of `make` command:
 ```bash
 $ make
 mkdir build/WEB-INF/classes/ -p
-cp src/web.xml build/WEB-INF/
-cp src/index.html build
-cp src/page.html build
-javac -d build/WEB-INF/classes src/classes/CheckServlet.java
-javac -d build/WEB-INF/classes src/classes/StatusServlet.java
-javac -d build/WEB-INF/classes src/classes/NameServlet.java
-mkdir /home/eug-vs/.tomcat/webapps/bsu -p
-cp build/. /home/eug-vs/.tomcat/webapps/bsu -r
+mkdir build/css
+mkdir build/js
+mkdir build/assets
+cp web/index.html build
+cp web/page.html build
+cp web/css/styles.css build/css
+cp web/assets/github.svg build/assets
+cp web/assets/edit.svg build/assets
+cp web/assets/email.svg build/assets
+cp web/assets/delete.svg build/assets
+cp web/WEB-INF/web.xml build/WEB-INF/
+javac -d build/WEB-INF/classes src/CheckServlet.java
+javac -d build/WEB-INF/classes src/ForwardServlet.java
+javac -d build/WEB-INF/classes src/RedirectServlet.java
+javac -d build/WEB-INF/classes src/StatusServlet.java
+javac -d build/WEB-INF/classes src/NameServlet.java
+Project deployed to Tomcat: /home/eug-vs/.tomcat/webapps/bsu.war
 Restarting tomcat...
 Using CATALINA_BASE:   /home/eug-vs/.tomcat
 Using CATALINA_HOME:   /home/eug-vs/.tomcat
@@ -46,12 +55,25 @@ You can run `make clean` to purge local build folder or `make clean_deploy` to p
 Here is the example of what the deployed project looks like:
 ```
 /home/eug-vs/.tomcat/webapps/bsu
+├── assets
+│   ├── delete.svg
+│   ├── edit.svg
+│   ├── email.svg
+│   └── github.svg
+├── css
+│   └── styles.css
 ├── index.html
+├── js
+├── META-INF
+│   ├── MANIFEST.MF
+│   └── war-tracker
 ├── page.html
 └── WEB-INF
     ├── classes
     │   ├── CheckServlet.class
+    │   ├── ForwardServlet.class
     │   ├── NameServlet.class
+    │   ├── RedirectServlet.class
     │   └── StatusServlet.class
     └── web.xml
 ```
