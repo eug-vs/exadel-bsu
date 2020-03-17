@@ -11,8 +11,11 @@ DEPLOY_DIR=$(CATALINA_HOME)/webapps
 # Targets
 ALL_SOURCES=$(notdir $(basename $(wildcard $(SOURCE_DIR)/*.java)))
 ALL_TARGETS=$(addsuffix .class, $(addprefix $(CLASSES_DIR)/, $(ALL_SOURCES)))
-ALL_STATIC=$(addprefix $(BUILD_DIR)/, $(notdir $(wildcard $(WEB_DIR)/*.html)))
-
+HTML=$(addprefix $(BUILD_DIR)/, $(notdir $(wildcard $(WEB_DIR)/*.html)))
+CSS=$(addprefix $(BUILD_DIR)/css/, $(notdir $(wildcard $(WEB_DIR)/css/*.css)))
+JS=$(addprefix $(BUILD_DIR)/js/, $(notdir $(wildcard $(WEB_DIR)/js/*.js)))
+ASSETS=$(addprefix $(BUILD_DIR)/assets/, $(notdir $(wildcard $(WEB_DIR)/assets/*)))
+ALL_STATIC=$(HTML) $(CSS) $(JS) $(ASSETS)
 
 .PHONY: clean clean_deploy stop reset
 
@@ -31,6 +34,15 @@ assemble: $(ALL_STATIC) $(BUILD_DIR)/WEB-INF/web.xml $(ALL_TARGETS)
 $(BUILD_DIR)/%.html: $(WEB_DIR)/%.html | $(BUILD_DIR)
 	cp $< $(BUILD_DIR)
 
+$(BUILD_DIR)/css/%.css: $(WEB_DIR)/css/%.css | $(BUILD_DIR)
+	cp $< $(BUILD_DIR)/css
+
+$(BUILD_DIR)/js/%.js: $(WEB_DIR)/js/%.js | $(BUILD_DIR)
+	cp $< $(BUILD_DIR)/js
+
+$(BUILD_DIR)/assets/%: $(WEB_DIR)/assets/% | $(BUILD_DIR)
+	cp $< $(BUILD_DIR)/assets
+
 $(BUILD_DIR)/WEB-INF/web.xml: $(WEB_DIR)/WEB-INF/web.xml | $(BUILD_DIR)
 	cp $< $(BUILD_DIR)/WEB-INF/
 
@@ -39,6 +51,9 @@ $(CLASSES_DIR)/%.class: $(SOURCE_DIR)/%.java | $(BUILD_DIR)
 
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)/WEB-INF/classes/ -p
+	mkdir $(BUILD_DIR)/css
+	mkdir $(BUILD_DIR)/js
+	mkdir $(BUILD_DIR)/assets
 
 $(DEPLOY_DIR):
 	mkdir $@ -p
