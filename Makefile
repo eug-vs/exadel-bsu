@@ -4,6 +4,7 @@ PROJECT_NAME=bsu
 # Directories
 SOURCE_DIR=src
 WEB_DIR=web
+LOG_DIR=log
 BUILD_DIR=build
 CLASSES_DIR=$(BUILD_DIR)/WEB-INF/classes
 DEPLOY_DIR=$(CATALINA_HOME)/webapps
@@ -16,15 +17,19 @@ CSS=$(addprefix $(BUILD_DIR)/css/, $(notdir $(wildcard $(WEB_DIR)/css/*.css)))
 JS=$(addprefix $(BUILD_DIR)/js/, $(notdir $(wildcard $(WEB_DIR)/js/*.js)))
 ASSETS=$(addprefix $(BUILD_DIR)/assets/, $(notdir $(wildcard $(WEB_DIR)/assets/*)))
 ALL_STATIC=$(HTML) $(CSS) $(JS) $(ASSETS)
+LOGFILE=$(LOG_DIR)/$(shell date +%Y-%m-%d_%H:%M:%S).log
 
 .PHONY: clean clean_deploy stop reset
 
-run: deploy
+run: deploy | $(LOG_DIR)
 	@echo "Restarting tomcat..."
 	@$(CATALINA_HOME)/bin/shutdown.sh > /dev/null 2>&1
 	@sleep 1.5
-	@$(CATALINA_HOME)/bin/startup.sh
+	@CATALINA_OUT=$(LOGFILE) $(CATALINA_HOME)/bin/startup.sh
 	@echo "Server is running at http://localhost:8080/$(PROJECT_NAME)"
+	@sleep 1.5
+	@echo "" > $(LOGFILE)
+	@tail -f $(LOGFILE)
 
 deploy: assemble | $(DEPLOY_DIR) $(BUILD_DIR)
 	@cd $(BUILD_DIR) && jar -cf $(DEPLOY_DIR)/$(PROJECT_NAME).war .
@@ -59,6 +64,9 @@ $(BUILD_DIR):
 $(DEPLOY_DIR):
 	mkdir $@ -p
 
+$(LOG_DIR):
+	mkdir $@
+
 stop:
 	@$(CATALINA_HOME)/bin/shutdown.sh 2> /dev/null
 	@echo "Tomcat server is stopped."
@@ -70,5 +78,8 @@ clean_deploy: stop
 	rm -rf $(DEPLOY_DIR)/$(PROJECT_NAME)
 	rm -f $(DEPLOY_DIR)/$(PROJECT_NAME).war
 
-reset: clean clean_deploy
+clean_logs:
+	rm -rf $(LOG_DIR)
+
+reset: clean clean_deploy clean_logs
 

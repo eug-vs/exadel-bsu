@@ -7,3 +7,6 @@
 # Build folder, compiled .class files
 build
 **/*.class
+
+# Logs directory
+log
