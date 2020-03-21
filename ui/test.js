@@ -36,7 +36,9 @@
       [0, 10, { date: { after: referenceDate }, authorId: 1 }],
       [0, 10, { hashTag: 'cool' }]
     ],
+
     getPost: [1, 2, 15],
+
     addPost: [
       {
         id: 100,
@@ -49,7 +51,35 @@
         createdAt: referenceDate,
       }
     ],
+
+    editPost: [
+      [1, { content: "This post was edited with editPost() function." }],
+      [7, { content: "This post was edited with editPost() function.", createdAt: new Date() }]
+    ],
+
     removePost: [1, 2, 10],
+
+    validatePost: [
+      {
+        id: 300,
+        content: "This is the valid post example.",
+        author: {
+          id: 2,
+          name: "John",
+          surname: "Doe"
+        },
+        createdAt: referenceDate,
+      },
+      {
+        id: 300,
+        content: "This post is invalid since it has no createdAt field.",
+        author: {
+          id: 2,
+          name: "John",
+          surname: "Doe"
+        },
+      }
+    ]
   };
 
   // Generate test functions and assign them to test module object
