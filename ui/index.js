@@ -78,7 +78,8 @@
 
   logic.addPost = post => {
     if (!logic.validatePost(post) || !postsLoaded()) return false;
-    return posts.push(post);
+    posts.push(post);
+    return posts;
   }
 
   logic.editPost = (id, data) => {
