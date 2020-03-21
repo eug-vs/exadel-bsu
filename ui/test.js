@@ -12,11 +12,12 @@
 
   const logFunctionCall = (func, params, name="") => {
     let result;
-    if (params.length) {
-      result = func(...params);
+    if (params.length) result = func(...params);
+    else result = func(params);
+
+    if (typeof params === 'object') {
       console.log(`${name}(${JSON.stringify(params).slice(1, -1)})`);
     } else {
-      result = func(params);
       console.log(`${name}(${params})`);
     }
     console.log(result);
@@ -24,7 +25,7 @@
 
   const referenceDate = new Date("2020-02-15T23:00:00");
 
-  const paramsLists = {
+  const testData = {
     getPosts: [
       [],
       [0, 5],
@@ -36,15 +37,29 @@
       [0, 10, { hashTag: 'cool' }]
     ],
     getPost: [1, 2, 15],
+    addPost: [
+      {
+        id: 100,
+        content: "This post was created by addPost() function.",
+        author: {
+          id: 2,
+          name: "John",
+          surname: "Doe"
+        },
+        createdAt: referenceDate,
+      }
+    ],
+    removePost: [1, 2, 10],
   };
 
-  Object.keys(paramsLists).forEach(functionName => {
+  // Generate test functions and assign them to test module object
+  Object.keys(testData).forEach(functionName => {
     test[functionName] = () => {
       if(!logicLoaded()) return false;
-      const paramsList = paramsLists[functionName];
-      paramsList.forEach(params => logFunctionCall(logic[functionName], params, functionName));
+      testData[functionName].forEach(params => logFunctionCall(logic[functionName], params, functionName));
     };
   });
 
   window.test = test;
 })();
+
