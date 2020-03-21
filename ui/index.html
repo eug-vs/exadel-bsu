@@ -7,6 +7,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <script src="index.js"></script>
     <script src="data.js"></script>
+    <script src="test.js"></script>
+    <script>
+      console.warn("Logic functions are scoped under `logic` module. Feel free to explore them.");
+      console.warn("Tests for them are implemented under the same function names scoped under `test` module. All tests are invoked below:");
+      test.getPosts();
+      test.getPost();
+    </script>
   </head>
   <body>
     <header>

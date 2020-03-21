@@ -1,0 +1,50 @@
+;(() => {
+  const test = {};
+
+  const logicLoaded = () => {
+    try {
+      if (logic) return true;
+    } catch (e) {
+      console.error('Logic module is not loaded!');
+    }
+    return false;
+  }
+
+  const logFunctionCall = (func, params, name="") => {
+    let result;
+    if (params.length) {
+      result = func(...params);
+      console.log(`${name}(${JSON.stringify(params).slice(1, -1)})`);
+    } else {
+      result = func(params);
+      console.log(`${name}(${params})`);
+    }
+    console.log(result);
+  }
+
+  const referenceDate = new Date("2020-02-15T23:00:00");
+
+  const paramsLists = {
+    getPosts: [
+      [],
+      [0, 5],
+      [5, 3],
+      [0, 10, { authorId: 2 }],
+      [0, 10, { date: { before: referenceDate }}],
+      [0, 10, { date: { after: referenceDate }}],
+      [0, 10, { date: { after: referenceDate }, authorId: 1 }],
+      [0, 10, { hashTag: 'cool' }]
+    ],
+    getPost: [1, 2, 15],
+  };
+
+  Object.keys(paramsLists).forEach(functionName => {
+    test[functionName] = () => {
+      if(!logicLoaded()) return false;
+      const paramsList = paramsLists[functionName];
+      paramsList.forEach(params => logFunctionCall(logic[functionName], params, functionName));
+    };
+  });
+
+  window.test = test;
+})();
