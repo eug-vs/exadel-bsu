@@ -3,3 +3,7 @@
 
 # VIM swap files
 **/*.swp
+
+# NPM
+**/node_modules
+
