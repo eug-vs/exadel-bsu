@@ -33,7 +33,7 @@
   }
 
   logic.getPost = id => {
-    if(!postsLoaded()) return [];
+    if(!postsLoaded()) return null;
     return posts.find(post => post.id == id);
   }
 
