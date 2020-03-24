@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 class PostCollection {
   constructor(posts) {
-    this._posts = posts;
+    this._posts = Object.create(posts);
   }
 
   _filter(_posts, filterConfig) {
