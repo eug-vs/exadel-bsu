@@ -71,15 +71,15 @@
     ],
   };
 
-  // eslint-disable-next-line no-undef
+  /* eslint-disable no-undef */
   const postCollection = new PostCollection(testPosts);
-
-  // eslint-disable-next-line no-undef
   window.testPostCollection = () => {
     console.warn('Running pseudo-tests (demo) for PostCollection class:');
     Object.keys(testData).forEach(method => {
+      const isStatic = (method === 'validatePost');
+      const context = isStatic ? PostCollection : postCollection;
       testData[method].forEach(
-        params => logFunctionCall(postCollection[method], postCollection, params),
+        params => logFunctionCall(context[method], context, params),
       );
     });
   };

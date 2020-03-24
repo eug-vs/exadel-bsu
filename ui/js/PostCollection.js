@@ -29,7 +29,7 @@ class PostCollection {
     return this._posts.find(post => post.id === id);
   }
 
-  _validateUser(user) {
+  static _validateUser(user) {
     if (!user) return false;
     if (!user.id || typeof user.id !== 'number') return false;
     if (!user.name || typeof user.name !== 'string') return false;
@@ -37,24 +37,24 @@ class PostCollection {
     return true;
   }
 
-  validatePost(post) {
+  static validatePost(post) {
     // Required
     if (!post) return false;
     if (!post.id || typeof post.id !== 'number') return false;
     if (!post.content || typeof post.content !== 'string') return false;
     if (!post.createdAt || typeof post.createdAt !== 'object') return false;
-    if (!this._validateUser(post.author)) return false;
+    if (!PostCollection._validateUser(post.author)) return false;
 
     // Optional
     if (post.imageUrl && typeof post.imageUrl !== 'string') return false;
     if (post.hashTags && post.hashTags.some(hashTag => typeof hashTag !== 'string')) return false;
-    if (post.likes && !post.likes.every(user => this._validateUser(user))) return false;
+    if (post.likes && !post.likes.every(user => PostCollection._validateUser(user))) return false;
 
     return true;
   }
 
   addPost(post) {
-    if (!this.validatePost(post)) return false;
+    if (!PostCollection.validatePost(post)) return false;
     this._posts.push(post);
     return this._posts;
   }
@@ -63,7 +63,7 @@ class PostCollection {
     const targetPost = this.getPost(id);
     const index = this._posts.findIndex(post => post.id === id);
     const editedPost = { ...targetPost, ...data };
-    if (!this.validatePost(editedPost)) return false;
+    if (!PostCollection.validatePost(editedPost)) return false;
     this._posts[index] = editedPost;
     return editedPost;
   }
