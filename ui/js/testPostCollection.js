@@ -74,16 +74,13 @@
   // eslint-disable-next-line no-undef
   const postCollection = new PostCollection(testPosts);
 
-  // Generate test functions and assign them to test module object
-  const test = {};
-  Object.keys(testData).forEach(method => {
-    test[method] = () => {
+  // eslint-disable-next-line no-undef
+  window.testPostCollection = () => {
+    console.warn('Running pseudo-tests (demo) for PostCollection class:');
+    Object.keys(testData).forEach(method => {
       testData[method].forEach(
         params => logFunctionCall(postCollection[method], postCollection, params),
       );
-    };
-  });
-
-  // eslint-disable-next-line no-undef
-  window.test = test;
+    });
+  };
 })();
