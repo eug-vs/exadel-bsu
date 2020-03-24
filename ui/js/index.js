@@ -1,14 +1,7 @@
 ;(() => {
   const logic = {};
 
-  const postsLoaded = () => {
-    try {
-      if (posts) return true;
-    } catch (e) {
-      console.error('Posts data is not loaded!');
-    }
-    return false;
-  }
+  let _posts = posts? posts : [];
 
   const filterPosts = (posts, filterConfig) => {
     if (!filterConfig) return posts;
@@ -26,15 +19,13 @@
   }
 
   logic.getPosts = (skip = 0, top = 10, filterConfig) => {
-    if (!postsLoaded()) return [];
-    const paginated = posts.slice(skip, skip + top);
+    const paginated = _posts.slice(skip, skip + top);
     const sorted = paginated.sort((a, b) => a.createdAt < b.createdAt);
     return filterPosts(sorted, filterConfig);
   }
 
   logic.getPost = id => {
-    if(!postsLoaded()) return null;
-    return posts.find(post => post.id == id);
+    return _posts.find(post => post.id === id);
   }
 
   const validateUser = user => {
@@ -71,22 +62,21 @@
   }
 
   logic.addPost = post => {
-    if (!logic.validatePost(post) || !postsLoaded()) return false;
-    posts.push(post);
-    return posts;
+    if (!logic.validatePost(post)) return false;
+    _posts.push(post);
+    return _posts;
   }
 
   logic.editPost = (id, data) => {
     const post = logic.getPost(id);
-    const index = posts.findIndex(post => post.id === id);
+    const index = _posts.findIndex(post => post.id === id);
     const editedPost = { ...post, ...data };
     if (!logic.validatePost(editedPost)) return false;
-    return posts[index] = editedPost;
+    return _posts[index] = editedPost;
   }
 
   logic.removePost = id => {
-    if(!postsLoaded()) return false;
-    return posts = posts.filter(post => post.id !== id);
+    return _posts = _posts.filter(post => post.id !== id);
   }
 
   window.logic = logic;
