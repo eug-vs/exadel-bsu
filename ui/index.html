@@ -3,8 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title> Symposium </title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="js/data.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/test.js"></script>
+    <script>
+      console.warn("Logic functions are scoped under `logic` module. Feel free to explore them.");
+      console.warn("Tests for them are implemented under the same function names scoped under `test` module. All tests are invoked below:");
+      test.getPosts();
+      test.getPost();
+      test.addPost();
+      test.editPost();
+      test.removePost();
+      test.validatePost();
+    </script>
   </head>
   <body>
     <header>
@@ -35,8 +48,8 @@
               <span class="secondary"> February 27, 2020, 4:08 AM </span>
             </div>
             <div class="icons">
-              <img class="icon" src="icons/edit.svg" alt="edit">
-              <img class="icon" src="icons/delete.svg" alt="delete">
+              <img class="icon" src="assets/edit.svg" alt="edit">
+              <img class="icon" src="assets/delete.svg" alt="delete">
             </div>
           </div>
           <p>
@@ -56,8 +69,8 @@
               <span class="secondary"> February 27, 2020, 4:08 AM </span>
             </div>
             <div class="icons">
-              <img class="icon" src="icons/edit.svg" alt="edit">
-              <img class="icon" src="icons/delete.svg" alt="delete">
+              <img class="icon" src="assets/edit.svg" alt="edit">
+              <img class="icon" src="assets/delete.svg" alt="delete">
             </div>
           </div>
           <p>
@@ -72,8 +85,8 @@
               <span class="secondary"> February 27, 2020, 4:08 AM </span>
             </div>
             <div class="icons">
-              <img class="icon" src="icons/edit.svg" alt="edit">
-              <img class="icon" src="icons/delete.svg" alt="delete">
+              <img class="icon" src="assets/edit.svg" alt="edit">
+              <img class="icon" src="assets/delete.svg" alt="delete">
             </div>
           </div>
           <p>
@@ -84,11 +97,11 @@
     </div>
     <footer>
       <a href="mailto:eug-vs@keemail.me">
-        <img class="icon" src="icons/email.svg" alt="github">
+        <img class="icon" src="assets/email.svg" alt="github">
         eug-vs@keemail.me
       </a>
       <a href="https://github.com/eug-vs">
-        <img class="icon" src="icons/github.svg" alt="github">
+        <img class="icon" src="assets/github.svg" alt="github">
         Follow me on Github
       </a>
       <a href="https://github.com/eug-vs/exadel-bsu">
