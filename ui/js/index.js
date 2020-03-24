@@ -59,18 +59,12 @@
 
     if (
       post.hashTags &&
-      !post.hashTags.reduce(
-        (isValid, current) => isValid? typeof current == 'string' : false,
-        true
-      )
+      post.hashTags.some(hashTag => typeof hashTag !== 'string')
     ) return false;
 
     if (
       post.likes &&
-      !post.likes.reduce(
-        (isValid, current) => isValid? validateUser(current) : false,
-        true
-      )
+      !post.likes.every(user => validateUser(user))
     ) return false;
 
     return true;
