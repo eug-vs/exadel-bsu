@@ -4,7 +4,7 @@ class PostCollection {
     this._posts = posts;
   }
 
-  _filterPosts(_posts, filterConfig) {
+  _filter(_posts, filterConfig) {
     if (!filterConfig) return this._posts;
     let results = this._posts;
     const { date, authorId, hashTag } = filterConfig;
@@ -19,13 +19,13 @@ class PostCollection {
     return results;
   }
 
-  getPosts(skip = 0, top = 10, filterConfig) {
+  getPage(skip = 0, top = 10, filterConfig) {
     const paginated = this._posts.slice(skip, skip + top);
     const sorted = paginated.sort((a, b) => a.createdAt < b.createdAt);
-    return this._filterPosts(sorted, filterConfig);
+    return this._filter(sorted, filterConfig);
   }
 
-  getPost(id) {
+  get(id) {
     return this._posts.find(post => post.id === id);
   }
 
@@ -37,7 +37,7 @@ class PostCollection {
     return true;
   }
 
-  static validatePost(post) {
+  static validate(post) {
     // Required
     if (!post) return false;
     if (!post.id || typeof post.id !== 'number') return false;
@@ -53,22 +53,22 @@ class PostCollection {
     return true;
   }
 
-  addPost(post) {
-    if (!PostCollection.validatePost(post)) return false;
+  add(post) {
+    if (!PostCollection.validate(post)) return false;
     this._posts.push(post);
     return this._posts;
   }
 
-  editPost(id, data) {
-    const targetPost = this.getPost(id);
+  edit(id, data) {
+    const targetPost = this.get(id);
     const index = this._posts.findIndex(post => post.id === id);
     const editedPost = { ...targetPost, ...data };
-    if (!PostCollection.validatePost(editedPost)) return false;
+    if (!PostCollection.validate(editedPost)) return false;
     this._posts[index] = editedPost;
     return editedPost;
   }
 
-  removePost(id) {
+  remove(id) {
     this._posts = this._posts.filter(post => post.id !== id);
     return this._posts;
   }

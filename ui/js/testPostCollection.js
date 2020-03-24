@@ -15,7 +15,7 @@
   const referenceDate = new Date('2020-02-15T23:00:00');
 
   const testData = {
-    getPosts: [
+    getPage: [
       [],
       [0, 5],
       [5, 3],
@@ -26,9 +26,9 @@
       [0, 10, { hashTag: 'cool' }],
     ],
 
-    getPost: [1, 2, 15],
+    get: [1, 2, 15],
 
-    addPost: [
+    add: [
       {
         id: 100,
         content: 'This post was created by addPost() function.',
@@ -41,14 +41,14 @@
       },
     ],
 
-    editPost: [
+    edit: [
       [1, { content: 'This post was edited with editPost() function.' }],
       [7, { content: 'This post was edited with editPost() function.', createdAt: new Date() }],
     ],
 
-    removePost: [1, 2, 10],
+    remove: [1, 2, 10],
 
-    validatePost: [
+    validate: [
       {
         id: 300,
         content: 'This is the valid post example.',
@@ -72,11 +72,11 @@
   };
 
   /* eslint-disable no-undef */
-  const postCollection = new PostCollection(testPosts);
   window.testPostCollection = () => {
+    const postCollection = new PostCollection(testPosts);
     console.warn('Running pseudo-tests (demo) for PostCollection class:');
     Object.keys(testData).forEach(method => {
-      const isStatic = (method === 'validatePost');
+      const isStatic = (method === 'validate');
       const context = isStatic ? PostCollection : postCollection;
       testData[method].forEach(
         params => logFunctionCall(context[method], context, params),
