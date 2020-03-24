@@ -29,7 +29,6 @@ class PostCollection {
     return this._posts.find(post => post.id === id);
   }
 
-  // eslint-disable-next-line
   _validateUser(user) {
     if (!user) return false;
     if (!user.id || typeof user.id !== 'number') return false;
