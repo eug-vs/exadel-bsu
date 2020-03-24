@@ -6,6 +6,7 @@
   "rules": {
     "arrow-parens": [2, "as-needed"],
     "no-underscore-dangle": 0,
-    "no-multiple-empty-lines": [2, { "max": 2, "maxEOF": 1 } ]
+    "no-multiple-empty-lines": [2, { "max": 2, "maxEOF": 1 } ],
+    "no-console": 0
   }
 }

@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-const initialPosts = [
+const testPosts = [
   {
     id: 1,
     content: 'In id erat non orci commodo lobortis.',

@@ -1,25 +1,13 @@
-/* eslint-disable */
 (() => {
-  const test = {};
-
-  const logicLoaded = () => {
-    try {
-      if (logic) return true;
-    } catch (e) {
-      console.error('Logic module is not loaded!');
-    }
-    return false;
-  };
-
-  const logFunctionCall = (func, params, name = '') => {
+  const logFunctionCall = (func, context, params) => {
     let result;
-    if (params.length) result = func(...params);
-    else result = func(params);
+    if (params.length) result = func.apply(context, params);
+    else result = func.call(context, params);
 
     if (typeof params === 'object') {
-      console.log(`${name}(${JSON.stringify(params).slice(1, -1)})`);
+      console.log(`${func.name}(${JSON.stringify(params).slice(1, -1)})`);
     } else {
-      console.log(`${name}(${params})`);
+      console.log(`${func.name}(${params})`);
     }
     console.log(result);
   };
@@ -83,13 +71,19 @@
     ],
   };
 
+  // eslint-disable-next-line no-undef
+  const postCollection = new PostCollection(testPosts);
+
   // Generate test functions and assign them to test module object
-  Object.keys(testData).forEach(functionName => {
-    test[functionName] = () => {
-      if (!logicLoaded()) return false;
-      testData[functionName].forEach(params => logFunctionCall(logic[functionName], params, functionName));
+  const test = {};
+  Object.keys(testData).forEach(method => {
+    test[method] = () => {
+      testData[method].forEach(
+        params => logFunctionCall(postCollection[method], postCollection, params),
+      );
     };
   });
 
+  // eslint-disable-next-line no-undef
   window.test = test;
 })();
