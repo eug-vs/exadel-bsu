@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 class PostCollection {
   constructor(posts) {
-    this._posts = Object.create(posts);
+    this._posts = [];
+    this.addMultiple(posts);
   }
 
   _filter(_posts, filterConfig) {
@@ -59,6 +60,14 @@ class PostCollection {
     return this._posts;
   }
 
+  addMultiple(posts) {
+    return posts.reduce((invalidPosts, currentPost) => {
+      const success = this.add(currentPost);
+      if (!success) invalidPosts.push(currentPost);
+      return invalidPosts;
+    }, []);
+  }
+
   edit(id, data) {
     const targetPost = this.get(id);
     const index = this._posts.findIndex(post => post.id === id);
@@ -71,6 +80,10 @@ class PostCollection {
   remove(id) {
     this._posts = this._posts.filter(post => post.id !== id);
     return this._posts;
+  }
+
+  clear() {
+    this._posts = [];
   }
 }
 
