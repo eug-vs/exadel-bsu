@@ -10,3 +10,6 @@ build
 
 # Logs directory
 log
+
+# Node modules
+web/node_modules
