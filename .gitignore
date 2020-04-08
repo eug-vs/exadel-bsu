@@ -4,8 +4,8 @@
 # VIM swap files
 **/*.swp
 
-# Build folder, compiled .class files
-build
+# Target folder, compiled .class files
+target
 **/*.class
 
 # Logs directory
