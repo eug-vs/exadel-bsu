@@ -35,7 +35,10 @@
     <servlet-name>user</servlet-name>
     <servlet-class>UserServlet</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>post</servlet-name>
+    <servlet-class>PostServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>index</servlet-name>
@@ -44,6 +47,10 @@
   <servlet-mapping>
     <servlet-name>user</servlet-name>
     <url-pattern>/users</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>post</servlet-name>
+    <url-pattern>/posts</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>status</servlet-name>
