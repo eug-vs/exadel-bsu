@@ -9,7 +9,7 @@ public class User extends Entity {
   }
 
   public String getName() {
-    return this.name;
+    return name;
   }
 
   public void setName(String name) {
@@ -17,7 +17,7 @@ public class User extends Entity {
   }
 
   public String getSurname() {
-    return this.name;
+    return name;
   }
 
   public void setSurname(String surname) {
@@ -25,7 +25,7 @@ public class User extends Entity {
   }
 
   public String toString() {
-    return this.name + " " + this.surname + " (User #" + this.getId() + ")";
+    return name + " " + surname + " (User #" + getId() + ")";
   }
 }
 
