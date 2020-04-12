@@ -57,26 +57,6 @@
     <url-pattern>/status</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>name</servlet-name>
-    <url-pattern>/get</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>check</servlet-name>
-    <url-pattern>/check</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>page</servlet-name>
-    <url-pattern>/page</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>forward</servlet-name>
-    <url-pattern>/test1</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>redirect</servlet-name>
-    <url-pattern>/test2</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/css/*</url-pattern>
     <url-pattern>/js/*</url-pattern>
