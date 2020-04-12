@@ -1,8 +1,14 @@
 public abstract class Entity {
   private int id;
 
-  public Entity(int id) {
-    this.id = id;
+  public Entity() {
+    this.id = 0;
+  }
+
+  public void setId(int id) {
+    if (this.id == 0) {
+      this.id = id;
+    }
   }
 
   public int getId() {
@@ -11,3 +17,4 @@ public abstract class Entity {
 
   public abstract String toString();
 }
+

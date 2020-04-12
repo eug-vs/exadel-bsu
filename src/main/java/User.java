@@ -2,8 +2,8 @@ public class User extends Entity {
   private String name;
   private String surname;
 
-  public User(int id, String name, String surname) {
-    super(id);
+  public User(String name, String surname) {
+    super();
     this.name = name;
     this.surname = surname;
   }
@@ -28,3 +28,4 @@ public class User extends Entity {
     return this.name + " " + this.surname + "(User #" + this.getId() + ")";
   }
 }
+
