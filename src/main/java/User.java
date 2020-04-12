@@ -25,7 +25,7 @@ public class User extends Entity {
   }
 
   public String toString() {
-    return this.name + " " + this.surname + "(User #" + this.getId() + ")";
+    return this.name + " " + this.surname + " (User #" + this.getId() + ")";
   }
 }
 

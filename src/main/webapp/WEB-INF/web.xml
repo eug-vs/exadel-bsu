@@ -31,10 +31,19 @@
     <servlet-name>redirect</servlet-name>
     <servlet-class>RedirectServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>user</servlet-name>
+    <servlet-class>UserServlet</servlet-class>
+  </servlet>
+
 
   <servlet-mapping>
     <servlet-name>index</servlet-name>
     <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>user</servlet-name>
+    <url-pattern>/users</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>status</servlet-name>
