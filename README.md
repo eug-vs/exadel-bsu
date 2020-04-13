@@ -6,6 +6,7 @@ Project guided by Exadel team - a simple twitter-like **SPA**.
 ## Prerequisites
  - **Java 8**
  - **Apache Tomcat**
+ - **Apache Maven**
 
 ## Environmental variables
  - `JAVA_HOME` - has to point at your **JDK** installation
@@ -75,3 +76,44 @@ Each entity implements all **CRUD** operations (substitute `users` or `posts` in
 ## Posts API
  - **POST:** `/users?authorId={authorId}&content={content}` - create Post with specified `authorId` and `content`
  - **PUT:** `/users?id={id}&content={content}` - update `content` field for Post with specified `id`
+
+## Examples
+ - **GET:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/users?id=2" -i -X GET
+   HTTP/1.1 200                                
+   Content-Type: application/json
+   Content-Length: 89
+   Date: Mon, 13 Apr 2020 09:45:36 GMT
+
+   {"createdAt":"Mon Apr 13 12:10:32 MSK 2020","surname":"John","name":"Doe","id":2}
+   ```
+
+- **POST:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/posts?authorId=2&content=TestContent" -i -X POST
+   HTTP/1.1 201 
+   Content-Type: application/json
+   Content-Length: 90
+   Date: Mon, 13 Apr 2020 09:47:33 GMT
+
+   {"createdAt":"Mon Apr 13 12:47:33 MSK 2020","id":2,"authorId":2,"content":"TestContent"}
+   ```
+
+ - **PUT:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/users?id=2&name=NEWNAME" -i -X PUT
+   HTTP/1.1 200 
+   Content-Type: application/json
+   Content-Length: 86
+   Date: Mon, 13 Apr 2020 09:48:43 GMT
+
+   {"createdAt":"Mon Apr 13 12:47:33 MSK 2020","surname":"Doe","name":"NEWNAME","id":2}
+   ```
+
+ - **DELETE:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/posts?id=1" -i -X DELETE    
+   HTTP/1.1 204                                              
+   Date: Mon, 13 Apr 2020 09:49:40 GMT
+   ```
