@@ -23,9 +23,5 @@ public class Post extends Entity {
   public String getContent() {
     return content;
   }
-
-  public String toString() {
-    return content.substring(0, 10) + "... (Post #" + getId() + " from " + getCreatedAt() + ")";
-  }
 }
 

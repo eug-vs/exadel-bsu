@@ -9,6 +9,7 @@ public class PostServlet extends GlobalServlet {
     int id = Integer.parseInt(request.getParameter("id"));
     Post post = posts.get(id);
     if (post != null) {
+      response.setContentType("application/json");
       response.getOutputStream().println(post.toString());
     } else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
   }

@@ -17,15 +17,11 @@ public class User extends Entity {
   }
 
   public String getSurname() {
-    return name;
+    return surname;
   }
 
   public void setSurname(String surname) {
     this.surname = surname;
-  }
-
-  public String toString() {
-    return name + " " + surname + " (User #" + getId() + ")";
   }
 }
 

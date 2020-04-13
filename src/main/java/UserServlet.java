@@ -9,6 +9,7 @@ public class UserServlet extends GlobalServlet {
     int id = Integer.parseInt(request.getParameter("id"));
     User user = users.get(id);
     if (user != null) {
+      response.setContentType("application/json");
       response.getOutputStream().println(user.toString());
     } else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
   }

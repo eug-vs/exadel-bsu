@@ -1,12 +1,13 @@
 import java.util.Date;
+import org.json.JSONObject;
 
 public abstract class Entity {
   private int id;
   private Date createdAt;
 
   public Entity() {
-    this.id = 0;
-    this.createdAt = new Date();
+    id = 0;
+    createdAt = new Date();
   }
 
   public void setId(int id) {
@@ -16,13 +17,16 @@ public abstract class Entity {
   }
 
   public int getId() {
-    return this.id;
+    return id;
   }
 
   public Date getCreatedAt() {
-    return this.createdAt;
+    return createdAt;
   }
 
-  public abstract String toString();
+  public String toString() {
+    JSONObject json = new JSONObject(this);
+    return json.toString();
+  }
 }
 
