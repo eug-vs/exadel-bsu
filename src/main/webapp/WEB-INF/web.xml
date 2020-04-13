@@ -39,6 +39,10 @@
     <servlet-name>post</servlet-name>
     <servlet-class>PostServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>FileUploadServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>index</servlet-name>
@@ -51,6 +55,10 @@
   <servlet-mapping>
     <servlet-name>post</servlet-name>
     <url-pattern>/posts</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>status</servlet-name>
