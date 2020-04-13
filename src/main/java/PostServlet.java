@@ -7,7 +7,7 @@ public class PostServlet extends GlobalServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String content = request.getParameter("content");
-    int authorId = Integer.parseInt(request.getParameter("id"));
+    int authorId = Integer.parseInt(request.getParameter("authorId"));
     Post post = new Post(authorId, content);
     posts.register(post);
     response.setStatus(HttpServletResponse.SC_CREATED);
@@ -28,7 +28,7 @@ public class PostServlet extends GlobalServlet {
     int id = Integer.parseInt(request.getParameter("id"));
     Post post = posts.get(id);
 
-    int authorId = Integer.parseInt(request.getParameter("id"));
+    int authorId = Integer.parseInt(request.getParameter("authorId"));
     if (authorId > 0) {
       post.setAuthorId(authorId);
     }

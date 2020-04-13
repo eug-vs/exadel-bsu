@@ -2,7 +2,7 @@ public class Post extends Entity {
   private String content;
   private int authorId;
 
-  public Post(int authordId, String content) {
+  public Post(int authorId, String content) {
     super();
     this.authorId = authorId;
     this.content = content;
