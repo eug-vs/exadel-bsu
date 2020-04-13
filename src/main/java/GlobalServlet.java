@@ -13,11 +13,11 @@ public abstract class GlobalServlet extends HttpServlet {
   }
 
   private void createTestUsers() {
-    users.create(new User("Eugene", "Sokolov"));
-    users.create(new User("John", "Doe"));
+    users.register(new User("Eugene", "Sokolov"));
+    users.register(new User("John", "Doe"));
   }
 
   private void createTestPosts() {
-    posts.create(new Post(2, "Hello, world!"));
+    posts.register(new Post(2, "Hello, world!"));
   }
 }

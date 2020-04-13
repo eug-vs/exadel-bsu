@@ -15,6 +15,15 @@ public class UserServlet extends GlobalServlet {
   }
 
   @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String name = request.getParameter("name");
+    String surname = request.getParameter("surname");
+    User user = new User(name, surname);
+    users.register(user);
+    response.setStatus(HttpServletResponse.SC_CREATED);
+  }
+
+  @Override
   protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
     int id = Integer.parseInt(request.getParameter("id"));
     users.delete(id);

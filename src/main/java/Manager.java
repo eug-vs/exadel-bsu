@@ -9,14 +9,10 @@ public class Manager<T extends Entity> {
     nextId = 1;
   }
 
-  private void register(T object) {
+  public void register(T object) {
     object.setId(nextId);
-    nextId += 1;
-  }
-
-  public void create(T object) {
-    register(object);
     objects.add(object);
+    nextId += 1;
   }
 
   public T get(int id) {
