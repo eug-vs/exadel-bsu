@@ -1,5 +1,4 @@
 import java.util.Date;
-import org.json.JSONObject;
 
 public abstract class Entity {
   private int id;
@@ -22,11 +21,6 @@ public abstract class Entity {
 
   public Date getCreatedAt() {
     return createdAt;
-  }
-
-  public String toString() {
-    JSONObject json = new JSONObject(this);
-    return json.toString();
   }
 }
 

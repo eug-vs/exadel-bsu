@@ -1,3 +1,5 @@
+import java.lang.NumberFormatException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,11 +17,15 @@ public class PostServlet extends GlobalServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-    int id = Integer.parseInt(request.getParameter("id"));
-    Post post = posts.get(id);
-    if (post != null) {
-      returnInstance(response, post);
-    } else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+    try {
+      int id = Integer.parseInt(request.getParameter("id"));
+      Post post = posts.get(id);
+      if (post != null) {
+        returnInstance(response, post);
+      } else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+    } catch (NumberFormatException e) {
+      returnMultiple(response, posts.getObjects());
+    }
   }
 
   @Override

@@ -24,6 +24,10 @@ public class Manager<T extends Entity> {
     return null;
   }
 
+  public ArrayList<T> getObjects() {
+    return this.objects;
+  }
+
   public void delete(int id) {
     for (int i = 0; i < objects.size(); i++) {
       if (objects.get(i).getId() == id) objects.remove(i);
