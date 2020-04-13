@@ -22,6 +22,7 @@ public class FileUploadServlet extends HttpServlet {
       uploadDir.mkdirs();
     }
 
+    System.out.println("Fileb being uploaded to: " + uploadPath);
     try {
       String filePath = null;
       for (Part part : request.getParts()) {
