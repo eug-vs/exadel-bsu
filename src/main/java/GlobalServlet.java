@@ -1,4 +1,7 @@
+import java.io.IOException;
+
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 
 public abstract class GlobalServlet extends HttpServlet {
   public static Manager<User> users;
@@ -19,5 +22,14 @@ public abstract class GlobalServlet extends HttpServlet {
 
   private void createTestPosts() {
     posts.register(new Post(2, "Hello, world!"));
+  }
+
+  protected <T extends Entity> void returnInstance(HttpServletResponse response, T instance) {
+    try {
+      response.setContentType("application/json");
+      response.getOutputStream().println(instance.toString());
+    } catch (IOException e) {
+      response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    }
   }
 }
