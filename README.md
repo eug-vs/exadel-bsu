@@ -57,7 +57,7 @@ src
 ## Troubleshooting
 Note that it might not be `Intellij-IDEA`-compatible since it was not tested in any IDE.
 
-If you run into any problems with deploying to the **Tomcat** server you can always manually copy `.war` form `target/` to the `$CATALINA_HOME/webapps/$PROJECT_NAME` and start **Tomcat** server with `$CATALINA_HOME/bin/startup.sh`. It will be available at `http://localhost:8080/$PROJECT_NAME`.
+If you run into any problems with deploying to the **Tomcat** server you can always manually copy `.war` from `target/` to the `$CATALINA_HOME/webapps/` and start **Tomcat** server with `$CATALINA_HOME/bin/startup.sh`. It will be available at `http://localhost:8080/$PROJECT_NAME`.
 
 # API Reference
 If running locally assume **base url** to be `localhost:8080/$PROJECT_NAME`.
@@ -74,8 +74,8 @@ Each entity implements all **CRUD** operations (substitute `users` or `posts` in
  - **PUT:** `/users?id={id}&name={name}` - update `name` field for User with specified `id`
 
 ## Posts API
- - **POST:** `/users?authorId={authorId}&content={content}` - create Post with specified `authorId` and `content`
- - **PUT:** `/users?id={id}&content={content}` - update `content` field for Post with specified `id`
+ - **POST:** `/posts?authorId={authorId}&content={content}` - create Post with specified `authorId` and `content`
+ - **PUT:** `/posts?id={id}&content={content}` - update `content` field for Post with specified `id`
 
 ## Examples
  - **GET:**
