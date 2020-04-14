@@ -1,5 +1,3 @@
-import java.lang.NumberFormatException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,41 +15,54 @@ public class UserServlet extends GlobalServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-    try {
-      int id = Integer.parseInt(request.getParameter("id"));
-      User user = users.get(id);
-      if (user != null) {
-        returnInstance(response, user);
-      } else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-    } catch (NumberFormatException e) {
+    int id = parseId(request);
+
+    if (id == 0) {
       returnMultiple(response, users.getObjects());
+    } else if (id == -1) {
+      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    } else {
+      User user = users.get(id);
+      if (user != null) returnInstance(response, user);
+      else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
   }
 
   @Override
   protected void doPut(HttpServletRequest request, HttpServletResponse response) {
-    int id = Integer.parseInt(request.getParameter("id"));
-    User user = users.get(id);
+    int id = parseId(request);
 
-    String name = request.getParameter("name");
-    if (name != null) {
-      user.setName(name);
+    if (id == 0 || id == -1) {
+      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    } else {
+      User user = users.get(id);
+      if (user == null) response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+      else {
+        String name = request.getParameter("name");
+        if (name != null) {
+          user.setName(name);
+        }
+
+        String surname = request.getParameter("surname");
+        if (surname != null) {
+          user.setSurname(surname);
+        }
+
+        returnInstance(response, user);
+      }
     }
-
-    String surname = request.getParameter("surname");
-    if (surname != null) {
-      user.setSurname(surname);
-    }
-
-    returnInstance(response, user);
   }
 
   @Override
   protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
-    int id = Integer.parseInt(request.getParameter("id"));
-    users.delete(id);
+    int id = parseId(request);
 
-    response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+    if (id == 0 || id == -1) {
+      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    } else {
+      users.delete(id);
+      response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+    }
   }
 }
 

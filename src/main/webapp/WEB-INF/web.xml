@@ -50,11 +50,11 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>user</servlet-name>
-    <url-pattern>/users</url-pattern>
+    <url-pattern>/users/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>post</servlet-name>
-    <url-pattern>/posts</url-pattern>
+    <url-pattern>/posts/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
