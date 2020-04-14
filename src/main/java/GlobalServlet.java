@@ -1,24 +1,24 @@
 import javax.servlet.http.HttpServlet;
 
 public abstract class GlobalServlet extends HttpServlet {
-  public static Service<User> users;
-  public static Service<Post> posts;
+  public static Service<User> userService;
+  public static Service<Post> postService;
 
   public GlobalServlet() {
-    users = new Service<User>();
-    posts = new Service<Post>();
+    userService = new Service<User>();
+    postService = new Service<Post>();
 
     createTestUsers();
     createTestPosts();
   }
 
   private void createTestUsers() {
-    users.register(new User("Eugene", "Sokolov"));
-    users.register(new User("John", "Doe"));
+    userService.register(new User("Eugene", "Sokolov"));
+    userService.register(new User("John", "Doe"));
   }
 
   private void createTestPosts() {
-    posts.register(new Post(2, "Hello, world!"));
+    postService.register(new Post(2, "Hello, world!"));
   }
 
 }

@@ -1,10 +1,9 @@
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class UserServlet extends EntityServlet<User> {
 
   public UserServlet() {
-    entities = users;
+    service = userService;
   }
 
   protected User createInstance(HttpServletRequest request) {

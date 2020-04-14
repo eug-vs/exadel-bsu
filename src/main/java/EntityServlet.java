@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 public abstract class EntityServlet<T extends Entity> extends GlobalServlet {
 
-  public Service<T> entities;
+  public Service<T> service;
 
   protected abstract T createInstance(HttpServletRequest request);
 
@@ -64,11 +64,11 @@ public abstract class EntityServlet<T extends Entity> extends GlobalServlet {
     int id = parseId(request);
 
     if (id == 0) {
-      returnMultiple(response, entities.getObjects());
+      returnMultiple(response, service.getObjects());
     } else if (id == -1) {
       response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     } else {
-      T instance = entities.get(id);
+      T instance = service.get(id);
       if (instance != null) returnInstance(response, instance);
       else response.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
@@ -77,7 +77,7 @@ public abstract class EntityServlet<T extends Entity> extends GlobalServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
     T instance = createInstance(request);
-    entities.register(instance);
+    service.register(instance);
 
     response.setStatus(HttpServletResponse.SC_CREATED);
     returnInstance(response, instance);
@@ -90,7 +90,7 @@ public abstract class EntityServlet<T extends Entity> extends GlobalServlet {
     if (id == 0 || id == -1) {
       response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     } else {
-      T instance = entities.get(id);
+      T instance = service.get(id);
       if (instance == null) response.setStatus(HttpServletResponse.SC_NOT_FOUND);
       else {
         modifyInstance(request, instance);
@@ -106,7 +106,7 @@ public abstract class EntityServlet<T extends Entity> extends GlobalServlet {
     if (id == 0 || id == -1) {
       response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     } else {
-      entities.delete(id);
+      service.delete(id);
       response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
   }

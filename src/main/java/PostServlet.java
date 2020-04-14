@@ -1,10 +1,9 @@
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class PostServlet extends EntityServlet<Post> {
 
   public PostServlet() {
-    entities = posts;
+    service = postService;
   }
 
   protected Post createInstance(HttpServletRequest request) {
