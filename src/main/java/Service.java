@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class Manager<T extends Entity> {
+public class Service<T extends Entity> {
   private ArrayList<T> objects;
   private int nextId;
 
-  public Manager() {
+  public Service() {
     objects = new ArrayList<T>();
     nextId = 1;
   }

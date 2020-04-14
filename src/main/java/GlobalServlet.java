@@ -8,12 +8,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public abstract class GlobalServlet extends HttpServlet {
-  public static Manager<User> users;
-  public static Manager<Post> posts;
+  public static Service<User> users;
+  public static Service<Post> posts;
 
   public GlobalServlet() {
-    users = new Manager<User>();
-    posts = new Manager<Post>();
+    users = new Service<User>();
+    posts = new Service<Post>();
 
     createTestUsers();
     createTestPosts();
