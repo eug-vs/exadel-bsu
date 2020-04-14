@@ -66,16 +66,16 @@ If running locally assume **base url** to be `localhost:8080/$PROJECT_NAME`.
 Project contains 2 types of *Entities*: `User` and `Post`.
 Each entity implements all **CRUD** operations (substitute `users` or `posts` instead of `{entities}`):
  - **GET:** `/{entities}` - get all entities
- - **GET:** `/{entities}?id={id}` - get an entity with specified `id`
- - **DELETE:** `/{entities}?id={id}` - delete an entity
+ - **GET:** `/{entities}?id={id}` or `/{entities}/{id}` - get an entity with specified `id`
+ - **DELETE:** `/{entities}?id={id}` or `/{entities}/{id}` - delete an entity
 
 ## Users API
  - **POST:** `/users?name={name}&surname={surname}` - create User with specified `name` and `surname`
- - **PUT:** `/users?id={id}&name={name}` - update `name` field for User with specified `id`
+ - **PUT:** `/users?id={id}&name={name}` or `/users/{id}?name={name}` - update `name` field for User with specified `id`
 
 ## Posts API
  - **POST:** `/posts?authorId={authorId}&content={content}` - create Post with specified `authorId` and `content`
- - **PUT:** `/posts?id={id}&content={content}` - update `content` field for Post with specified `id`
+ - **PUT:** `/posts?id={id}&content={content}` or `/posts/{id}?content={content}` - update `content` field for Post with specified `id`
 
 ## Examples
  - **GET:**
@@ -102,7 +102,7 @@ Each entity implements all **CRUD** operations (substitute `users` or `posts` in
 
  - **PUT:**
    ```
-   $ curl "localhost:8080/exadel-bsu/users?id=2&name=NEWNAME" -i -X PUT
+   $ curl "localhost:8080/exadel-bsu/users/2?name=NEWNAME" -i -X PUT
    HTTP/1.1 200 
    Content-Type: application/json
    Content-Length: 86
@@ -113,7 +113,7 @@ Each entity implements all **CRUD** operations (substitute `users` or `posts` in
 
  - **DELETE:**
    ```
-   $ curl "localhost:8080/exadel-bsu/posts?id=1" -i -X DELETE    
+   $ curl "localhost:8080/exadel-bsu/posts/1" -i -X DELETE    
    HTTP/1.1 204                                              
    Date: Mon, 13 Apr 2020 09:49:40 GMT
    ```
