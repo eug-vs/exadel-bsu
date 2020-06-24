@@ -4,6 +4,9 @@
 # VIM swap files
 **/*.swp
 
+# NPM
+**/node_modules
+
 # Target folder, compiled .class files
 target
 **/*.class
@@ -11,5 +14,3 @@ target
 # Logs directory
 log
 
-# Node modules
-web/node_modules
