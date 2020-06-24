@@ -15,7 +15,7 @@ jobs:
 
       - run:
           name: Install NPM dependencies
-          command: cd ui && npm install
+          command: cd src/main/webapp && npm install
 
       - save_cache:
           paths:
