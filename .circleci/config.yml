@@ -24,5 +24,5 @@ jobs:
 
       - run:
           name: Run Eslint checks
-          command: cd ui && npm test
+          command: cd src/main/webapp && npm test
 
