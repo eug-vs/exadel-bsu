@@ -7,3 +7,10 @@
 # NPM
 **/node_modules
 
+# Target folder, compiled .class files
+target
+**/*.class
+
+# Logs directory
+log
+
