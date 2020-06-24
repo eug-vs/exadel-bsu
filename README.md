@@ -2,85 +2,118 @@
 Project guided by Exadel team - a simple twitter-like **SPA**.
 
 # Gettind started
+
 ## Prerequisites
  - **Java 8**
  - **Apache Tomcat**
- - **GNU Make**
+ - **Apache Maven**
 
 ## Environmental variables
  - `JAVA_HOME` - has to point at your **JDK** installation
  - `CATALINA_HOME` - has to point at **Apache Tomcat** root directory
- - `CLASSPATH` - has to contain `$(CATALINA_HOME)/lib/servlet-api.jar`
- - `PROJECT_NAME` - *optional*, defaults to `bsu`
-
+ - `PROJECT_NAME` - in this documentation assumed to be `exadel-bsu` (it's here since I plan changing the name in future) 
+ 
 ## Building and running
-The running process is pretty simple due to [Makefile](./Makefile), just execute:
+Building is performed by maven:
 ```bash
-$ make run
+$ mvn install
 ```
-It will assemble the project into `build` folder, then deploy it to your **Tomcat** server and run it!
+It will assemble the project into `target` folder.
 
-Here is the example output of `make` command:
-```bash
-$ make
-mkdir build/WEB-INF/classes/ -p
-mkdir build/css
-mkdir build/js
-mkdir build/assets
-cp web/index.html build
-cp web/page.html build
-cp web/css/styles.css build/css
-cp web/assets/github.svg build/assets
-cp web/assets/edit.svg build/assets
-cp web/assets/email.svg build/assets
-cp web/assets/delete.svg build/assets
-cp web/WEB-INF/web.xml build/WEB-INF/
-javac -d build/WEB-INF/classes src/CheckServlet.java
-javac -d build/WEB-INF/classes src/ForwardServlet.java
-javac -d build/WEB-INF/classes src/RedirectServlet.java
-javac -d build/WEB-INF/classes src/StatusServlet.java
-javac -d build/WEB-INF/classes src/NameServlet.java
-Project deployed to Tomcat: /home/eug-vs/.tomcat/webapps/bsu.war
-Restarting tomcat...
-Using CATALINA_BASE:   /home/eug-vs/.tomcat
-Using CATALINA_HOME:   /home/eug-vs/.tomcat
-Using CATALINA_TMPDIR: /home/eug-vs/.tomcat/temp
-Using JRE_HOME:        /usr/lib/jvm/java-1.8.0-openjdk-amd64
-Using CLASSPATH:       /home/eug-vs/.tomcat/bin/bootstrap.jar:/home/eug-vs/.tomcat/bin/tomcat-juli.jar
-Tomcat started.
-Server is running at http://localhost:8080/bsu
-```
-You can run `make clean` to purge local build folder or `make clean_deploy` to purge deployed project from the **Tomcat**.
+In order to deploy it to **Tomcat** server and run, execute `start.sh` script.
 
-Here is the example of what the deployed project looks like:
+
+## Project layout
 ```
-/home/eug-vs/.tomcat/webapps/bsu
-├── assets
-│   ├── delete.svg
-│   ├── edit.svg
-│   ├── email.svg
-│   └── github.svg
-├── css
-│   └── styles.css
-├── index.html
-├── js
-├── META-INF
-│   ├── MANIFEST.MF
-│   └── war-tracker
-├── page.html
-└── WEB-INF
-    ├── classes
-    │   ├── CheckServlet.class
-    │   ├── ForwardServlet.class
-    │   ├── NameServlet.class
-    │   ├── RedirectServlet.class
-    │   └── StatusServlet.class
-    └── web.xml
+src
+└── main
+    ├── java
+    │   ├── Entity.java
+    │   ├── GlobalServlet.java
+    │   ├── LogFilter.java
+    │   ├── Manager.java
+    │   ├── Post.java
+    │   ├── PostServlet.java
+    │   ├── StatusServlet.java
+    │   ├── User.java
+    │   └── UserServlet.java
+    └── webapp
+        ├── assets
+        │   ├── delete.svg
+        │   ├── edit.svg
+        │   ├── email.svg
+        │   └── github.svg
+        ├── css
+        │   └── styles.css
+        ├── index.html
+        ├── js
+        │   ├── data.js
+        │   ├── index.js
+        │   └── test.js
+        └── WEB-INF
+            └── web.xml
 ```
 
 ## Troubleshooting
 Note that it might not be `Intellij-IDEA`-compatible since it was not tested in any IDE.
 
-If you run into any problems with deploying to the **Tomcat** server you can always manually copy `build` dir to the `$(CATALINA_HOME)/webapps/$(PROJECT_NAME)` and start **Tomcat** server with `$(CATALINA_HOME)/bin/startup.sh`. It will be available at `http://localhost:8080/$(PROJECT_NAME)`.
+If you run into any problems with deploying to the **Tomcat** server you can always manually copy `.war` from `target/` to the `$CATALINA_HOME/webapps/` and start **Tomcat** server with `$CATALINA_HOME/bin/startup.sh`. It will be available at `http://localhost:8080/$PROJECT_NAME`.
 
-If you fail to build project locally you can always manually `javac` all the sources and then gently assemble the project with your mighty hands (**make sure to match example structure!**).
+# API Reference
+If running locally assume **base url** to be `localhost:8080/$PROJECT_NAME`.
+
+**Abstract** *Entity* model includes unique ID and creation date fields - they are assigned automatically on creation.
+Project contains 2 types of *Entities*: `User` and `Post`.
+Each entity implements all **CRUD** operations (substitute `users` or `posts` instead of `{entities}`):
+ - **GET:** `/{entities}` - get all entities
+ - **GET:** `/{entities}?id={id}` or `/{entities}/{id}` - get an entity with specified `id`
+ - **DELETE:** `/{entities}?id={id}` or `/{entities}/{id}` - delete an entity
+
+## Users API
+ - **POST:** `/users?name={name}&surname={surname}` - create User with specified `name` and `surname`
+ - **PUT:** `/users?id={id}&name={name}` or `/users/{id}?name={name}` - update `name` field for User with specified `id`
+
+## Posts API
+ - **POST:** `/posts?authorId={authorId}&content={content}` - create Post with specified `authorId` and `content`
+ - **PUT:** `/posts?id={id}&content={content}` or `/posts/{id}?content={content}` - update `content` field for Post with specified `id`
+
+## Examples
+ - **GET:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/users?id=2" -i -X GET
+   HTTP/1.1 200                                
+   Content-Type: application/json
+   Content-Length: 89
+   Date: Mon, 13 Apr 2020 09:45:36 GMT
+
+   {"createdAt":"Mon Apr 13 12:10:32 MSK 2020","surname":"John","name":"Doe","id":2}
+   ```
+
+- **POST:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/posts?authorId=2&content=TestContent" -i -X POST
+   HTTP/1.1 201 
+   Content-Type: application/json
+   Content-Length: 90
+   Date: Mon, 13 Apr 2020 09:47:33 GMT
+
+   {"createdAt":"Mon Apr 13 12:47:33 MSK 2020","id":2,"authorId":2,"content":"TestContent"}
+   ```
+
+ - **PUT:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/users/2?name=NEWNAME" -i -X PUT
+   HTTP/1.1 200 
+   Content-Type: application/json
+   Content-Length: 86
+   Date: Mon, 13 Apr 2020 09:48:43 GMT
+
+   {"createdAt":"Mon Apr 13 12:47:33 MSK 2020","surname":"Doe","name":"NEWNAME","id":2}
+   ```
+
+ - **DELETE:**
+   ```
+   $ curl "localhost:8080/exadel-bsu/posts/1" -i -X DELETE    
+   HTTP/1.1 204                                              
+   Date: Mon, 13 Apr 2020 09:49:40 GMT
+   ```
