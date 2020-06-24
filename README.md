@@ -25,33 +25,45 @@ In order to deploy it to **Tomcat** server and run, execute `start.sh` script.
 
 ## Project layout
 ```
-src
-└── main
-    ├── java
-    │   ├── Entity.java
-    │   ├── GlobalServlet.java
-    │   ├── LogFilter.java
-    │   ├── Manager.java
-    │   ├── Post.java
-    │   ├── PostServlet.java
-    │   ├── StatusServlet.java
-    │   ├── User.java
-    │   └── UserServlet.java
-    └── webapp
-        ├── assets
-        │   ├── delete.svg
-        │   ├── edit.svg
-        │   ├── email.svg
-        │   └── github.svg
-        ├── css
-        │   └── styles.css
-        ├── index.html
-        ├── js
-        │   ├── data.js
-        │   ├── index.js
-        │   └── test.js
-        └── WEB-INF
-            └── web.xml
+exadel-bsu
+├── log
+│   ├── 2020-05-06_18:08:45.log
+│   └── 2020-06-24_16:30:44.log
+├── src
+│   └── main
+│       ├── java
+│       │   ├── Entity.java
+│       │   ├── EntityServlet.java
+│       │   ├── FileUploadServlet.java
+│       │   ├── GlobalServlet.java
+│       │   ├── LogFilter.java
+│       │   ├── Post.java
+│       │   ├── PostServlet.java
+│       │   ├── Service.java
+│       │   ├── StatusServlet.java
+│       │   ├── User.java
+│       │   └── UserServlet.java
+│       └── webapp
+│           ├── index.html
+│           ├── package.json
+│           ├── package-lock.json
+│           ├── assets
+│           │   ├── delete.svg
+│           │   ├── edit.svg
+│           │   ├── email.svg
+│           │   └── github.svg
+│           ├── css
+│           │   └── styles.css
+│           ├── js
+│           │   ├── data.js
+│           │   ├── PostCollection.js
+│           │   └── testPostCollection.js
+│           └── WEB-INF
+│               └── web.xml
+├── pom.xml
+├── README.md
+└── start.sh
+
 ```
 
 ## Troubleshooting
